@@ -1,16 +1,1 @@
-//Browser Module
-function Browser() {console.log(`Help: Usage: Browser.example(); Functions: Browser.init(): Initalises the Browser module. Browser.openPage(content, id) Opens a new page with content. Browser.editPage(content, id) Edit a specified page.`)}
-Browser.init = function(){
-var Window = null
-};
-Browser.openPage = function(contentDeetaForWindow, id) {
-  Window = window.open('about:blank');
-  Window.document.write(contentDeetaForWindow, id);
-  Window.document.close();
-  return Window;
-};
-Browser.editPage = function(newContentDeetaForWindow, id) {
-  if (Window) {
-    Window.document.body.innerHTML = newContentDeetaForWindow;
-  }
-};
+var Browser = { init: function() { // Store the opened window reference on the Browser object itself this.Window = null; }, openPage: function(contentDeetaForWindow, id) { this.Window = window.open('about:blank'); this.Window.document.write(contentDeetaForWindow); this.Window.document.close(); return this.Window; }, editPage: function(newContentDeetaForWindow, id) { if (this.Window) { this.Window.document.body.innerHTML = newContentDeetaForWindow; } else { console.warn("No page is currently open. Call Browser.openPage() first."); } }, example: function() { console.log("Help: Usage: Browser.example(); Functions: Browser.init(): Initalises the Browser module. Browser.openPage(content, id) Opens a new page with content. Browser.editPage(content, id) Edit a specified page."); } };
